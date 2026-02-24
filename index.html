@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR" itemscope itemtype="https://schema.org/WebApplication">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Leitor de PDFs avançado com efeito realista de virar página. Suporte a modo claro/escuro e navegação intuitiva.">
+    <meta name="keywords" content="leitor pdf, efeito página, leitura noturna, pdf viewer">
+    <meta name="author" content="Advanced PDF Reader">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Leitor de PDFs - Efeito de Página Realista">
+    <meta property="og:description" content="Experiência de leitura imersiva com efeito 3D de virar página">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Leitor de PDFs Avançado">
+    <meta name="twitter:description" content="Leitura de PDFs com efeito realista de virar página">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+    
+    <title>Leitor de PDFs Avançado - Efeito de Página Realista</title>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- PDF.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Leitor de PDFs Avançado",
+        "description": "Leitor de PDFs com efeito realista de virar página e modo noturno",
+        "applicationCategory": "ReadingApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main" class="skip-link" aria-label="Pular para conteúdo principal">Pular para conteúdo</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header__container">
+            <h1 class="header__title">
+                <span class="header__icon" aria-hidden="true">📖</span>
+                <span class="header__text">Leitor Avançado</span>
+            </h1>
+            
+            <nav class="header__nav" role="navigation" aria-label="Navegação principal">
+                <button class="nav__btn nav__btn--upload" 
+                        id="uploadBtn" 
+                        type="button"
+                        aria-label="Carregar arquivo PDF"
+                        title="Carregar PDF">
+                    <span class="nav__btn-icon" aria-hidden="true">📤</span>
+                    <span class="nav__btn-text">Carregar PDF</span>
+                </button>
+                
+                <button class="nav__btn nav__btn--theme" 
+                        id="themeToggle" 
+                        type="button"
+                        aria-label="Alternar entre modo claro e escuro"
+                        title="Alternar tema">
+                    <span class="nav__btn-icon" aria-hidden="true">🌙</span>
+                    <span class="nav__btn-text">Modo Noturno</span>
+                </button>
+                
+                <button class="nav__btn nav__btn--fullscreen" 
+                        id="fullscreenBtn" 
+                        type="button"
+                        aria-label="Alternar tela cheia"
+                        title="Tela cheia">
+                    <span class="nav__btn-icon" aria-hidden="true">⛶</span>
+                    <span class="nav__btn-text">Tela Cheia</span>
+                </button>
+            </nav>
+        </div>
+        
+        <!-- Hidden file input -->
+        <input type="file" 
+               id="fileInput" 
+               class="visually-hidden" 
+               accept=".pdf"
+               aria-label="Selecionar arquivo PDF">
+    </header>
+
+    <!-- Main Content -->
+    <main id="main" class="main" role="main">
+        <!-- Welcome Screen -->
+        <section class="welcome" id="welcomeScreen" aria-labelledby="welcome-title" style="display: flex !important;">
+            <div class="welcome__content">
+                <h2 id="welcome-title" class="welcome__title">Bem-vindo ao Leitor Avançado</h2>
+                <p class="welcome__description">
+                    Experimente a leitura de PDFs como nunca antes. 
+                    Carregue seu arquivo e desfrute de um efeito realista de virar página.
+                </p>
+                
+                <div class="welcome__features">
+                    <div class="feature" role="listitem">
+                        <span class="feature__icon" aria-hidden="true">📖</span>
+                        <h3 class="feature__title">Efeito Realista</h3>
+                        <p class="feature__desc">Páginas que viram como um livro real</p>
+                    </div>
+                    
+                    <div class="feature" role="listitem">
+                        <span class="feature__icon" aria-hidden="true">🌙</span>
+                        <h3 class="feature__title">Modo Noturno</h3>
+                        <p class="feature__desc">Leitura confortável em ambientes escuros</p>
+                    </div>
+                    
+                    <div class="feature" role="listitem">
+                        <span class="feature__icon" aria-hidden="true">⚡</span>
+                        <h3 class="feature__title">Performance</h3>
+                        <p class="feature__desc">Carregamento rápido e navegação fluida</p>
+                    </div>
+                </div>
+                
+                <button class="welcome__cta" 
+                        id="welcomeUploadBtn" 
+                        type="button"
+                        aria-label="Carregar seu primeiro PDF">
+                    Carregar Meu Primeiro PDF
+                </button>
+            </div>
+        </section>
+
+        <!-- Reader Container -->
+        <section class="reader" id="readerContainer" aria-labelledby="reader-title" hidden>
+            <div class="reader__header">
+                <h2 id="reader-title" class="reader__title">
+                    <span id="bookTitle" class="book-title">Carregando...</span>
+                </h2>
+                
+                <div class="reader__progress" role="progressbar" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100" 
+                     aria-valuenow="0"
+                     aria-label="Progresso da leitura">
+                    <div class="progress__bar">
+                        <div class="progress__fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress__text" id="progressText">0 / 0</span>
+                </div>
+            </div>
+            
+            <!-- Book Container -->
+            <div class="book-container" id="bookContainer">
+                <div class="book" id="book">
+                    <!-- Pages will be dynamically inserted here -->
+                </div>
+            </div>
+            
+            <!-- Navigation Controls -->
+            <nav class="reader__nav" aria-label="Navegação do livro">
+                <button class="nav__btn nav__btn--prev" 
+                        id="prevBtn" 
+                        type="button"
+                        aria-label="Página anterior"
+                        title="Página anterior (Seta Esquerda)">
+                    <span class="nav__btn-icon" aria-hidden="true">←</span>
+                    <span class="nav__btn-text">Anterior</span>
+                </button>
+                
+                <div class="nav__pages" aria-live="polite" aria-atomic="true">
+                    <span class="pages__current" id="currentPage">0</span>
+                    <span class="pages__separator">/</span>
+                    <span class="pages__total" id="totalPages">0</span>
+                </div>
+                
+                <button class="nav__btn nav__btn--next" 
+                        id="nextBtn" 
+                        type="button"
+                        aria-label="Próxima página"
+                        title="Próxima página (Seta Direita)">
+                    <span class="nav__btn-text">Próximo</span>
+                    <span class="nav__btn-icon" aria-hidden="true">→</span>
+                </button>
+            </nav>
+        </section>
+
+        <!-- Loading State -->
+        <div class="loading" id="loadingState" hidden>
+            <div class="loading__spinner" aria-label="Carregando PDF"></div>
+            <p class="loading__text">Processando seu PDF...</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error" id="errorState" hidden role="alert">
+            <div class="error__icon" aria-hidden="true">⚠️</div>
+            <h3 class="error__title">Ops! Algo deu errado</h3>
+            <p class="error__message" id="errorMessage"></p>
+            <button class="error__retry" 
+                    id="retryBtn" 
+                    type="button"
+                    aria-label="Tentar novamente">
+                Tentar Novamente
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__content">
+            <p class="footer__text">
+                <small>&copy; 2024 Leitor Avançado. Desenvolvido com tecnologia web moderna.</small>
+            </p>
+            <div class="footer__shortcuts">
+                <span class="shortcut">
+                    <kbd>←</kbd> / <kbd>→</kbd> Navegar
+                </span>
+                <span class="shortcut">
+                    <kbd>Esc</kbd> Sair tela cheia
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
